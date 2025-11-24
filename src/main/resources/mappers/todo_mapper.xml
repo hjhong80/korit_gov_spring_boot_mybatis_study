@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.korit.mybatis_study.mapper.TodoMapper">
+    <resultMap id="TodoResultMap" type="com.korit.mybatis_study.entity.Todo">
+        <id property="todoId" column="todo_id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="createDt" column="create_dt" />
+        <result property="updateDt" column="update_dt" />
+    </resultMap>
+    <insert id="addTodo" useGeneratedKeys="true" keyProperty="todoId">
+        insert into
+            todo_tb
+        values
+            (0, #{title}, #{content}, now(), null);
+    </insert>
+    <select id="findTodoByTitle" resultMap="TodoResultMap">
+        select
+            *
+        from
+            todo_tb
+        where
+            title = #{title};
+    </select>
+    <select id="findTodoByKeyword" resultMap="TodoResultMap">
+        select
+            *
+        from
+            todo_tb
+        where
+            title = "%" + #{title} + "%";
+    </select>
+</mapper>
