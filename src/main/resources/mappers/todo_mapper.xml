@@ -30,6 +30,36 @@
         from
             todo_tb
         where
-            title = "%" + #{title} + "%";
+            title like "% #{keyword} %";
     </select>
+    <select id="findAll" resultMap="TodoResultMap">
+        select
+            *
+        from
+            todo_tb
+    </select>
+    <select id="findTodoByTodoId" resultMap="TodoResultMap">
+        select
+            *
+        from
+            todo_tb
+        where
+            todo_id = #{todoId};
+    </select>
+    <update id="editTodo">
+        update
+            todo_tb
+        set
+            title = #{title},
+            content = #{content},
+            update_dt = now()
+        where
+            todo_id = #{todoId};
+    </update>
+    <delete id="delTodo">
+        delete from
+            todo_tb
+        where
+            todo_id = #{todoId};
+    </delete>
 </mapper>

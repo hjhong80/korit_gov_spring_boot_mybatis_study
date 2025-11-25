@@ -11,4 +11,8 @@ public interface TodoMapper {
     int addTodo(Todo todo);
     Optional<Todo> findTodoByTitle(String title);
     Optional<List<Todo>> findTodoByKeyword(String keyword);
+    List<Todo> findAll();
+    int editTodo(Todo todo);
+    Optional<Todo> findTodoByTodoId(Integer todoId);
+    int delTodo(Integer todoId);
 }
